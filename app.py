@@ -37,9 +37,14 @@ if st.button("Submit Study Session"):
     history = st.session_state.history
 
     st.subheader("🎯 Micro Goals")
+
     goals = generate_micro_goals(history)
-    for g in goals:
-        st.write(g)
+
+    for i, g in enumerate(goals, 1):
+        st.markdown(f"### Goal {i}")
+        st.write(f"📘 Task: {g['goal']}")
+        st.write(f"⏱ Time Required: {g['time']}")
+        st.divider()
 
     st.subheader("📈 Confidence Score")
     st.metric("Score", confidence_score(history))
