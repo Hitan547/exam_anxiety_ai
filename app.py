@@ -136,4 +136,11 @@ if st.button("Submit Study Session"):
 # -----------------------
 
 st.subheader("📅 Recent Study Sessions")
-st.dataframe(pd.DataFrame(history).sort_values("date", ascending=False).head(7))
+
+df_hist = pd.DataFrame(history)
+
+if not df_hist.empty:
+    df_hist["date"] = pd.to_datetime(df_hist["date"])
+    df_hist = df_hist.sort_values("date", ascending=False)
+
+st.dataframe(df_hist.head(7))
